@@ -2,7 +2,7 @@
 #################################################################################################
 #   "BASHCL" play with TERRAFORM & ANSIBLE in old-fashion BASH-style
 #################################################################################################
-run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new 
+run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
 debug@@@ = 2   # possible here are 0, 1, 2, 3
 
 # ROOT
@@ -11,7 +11,7 @@ VM_name="$NS-host-01"
 HOST="master-1"
 DOMAIN="my.example.com"
 
-credentials_file=@@meta/gcp.json
+credentials_file=~/.gcp/gcp.json
 project_id="foxy-test-415019"
 region="europe-west1"
 zone="$region-b"
@@ -26,8 +26,6 @@ region=@@last           # from thе script without affecting his work
 vpc_name=@@last         # they are present in the script only to illustrate
 ssh_key_public=@@meta/public.key
 ssh_key_private=@@meta/private.key
-fau=@@
-
 
 ~FIREWALL:
 credentials_file=@@last
@@ -58,7 +56,7 @@ tags="{master, $tag_allow_ssh }"
 #ACCESS_ip=@@self/nat_ip
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
-~SLAVESOUP:
+~SLAVES_GROUP:
 group_size=2
 credentials_file=@@last
 project_id=@@last
@@ -91,4 +89,3 @@ playbooks="{init_master }"
 
 #this initial dynamic-inventory settings for fifth SINGLE (for Ansible)
 # Varibles for Ansible section
-
