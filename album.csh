@@ -57,7 +57,7 @@ tags="{master, $tag_allow_ssh }"
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
 ~SLAVES_GROUP:
-group_size=2
+group_size=1
 credentials_file=@@last
 project_id=@@last
 region=@@last
