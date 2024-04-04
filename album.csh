@@ -77,6 +77,9 @@ tags="{slaves, $tag_allow_ssh, $tag_allow_web }"
 #ACCESS_ip=@@self/nat_ip
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
+~LOADED_GITOPS_STAGE
+.
+
 ~SETUP_SLAVES
 host=@@all
 <<<SET_ansible_ready | $host | 20
