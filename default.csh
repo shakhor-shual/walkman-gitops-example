@@ -14,7 +14,7 @@ credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
 region="europe-west1"
 zone="$region-b"
-vpc_name="@@this-new-vpc"
+vpc_name="new-@@this-vpc"
 subnet_name="@@this-my-subnet"
 subnet_cidr="192.168.0.0/24"
 
