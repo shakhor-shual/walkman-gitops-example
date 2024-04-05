@@ -15,7 +15,7 @@ project_id="foxy-test-415019"
 region="europe-west1"
 zone="$region-b"
 vpc_name="@@this-my-vpc"
-subnet_name="@@this-custom-subnet"
+subnet_name="@@this-my-subnet"
 subnet_cidr="192.168.0.0/24"
 
 ~VPC:
