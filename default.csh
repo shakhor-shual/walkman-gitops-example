@@ -6,8 +6,7 @@ run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, 
 debug@@@ = 2   # possible here are 0, 1, 2, 3
 
 # ROOT
-NS="plan9"
-VM_name="$NS-host-01"
+VM_name="@@this-host-01"
 HOST="master-1"
 DOMAIN="my.example.com"
 
@@ -15,8 +14,8 @@ credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
 region="europe-west1"
 zone="$region-b"
-vpc_name="$NS-my-vpc"
-subnet_name="$NS-custom-subnet"
+vpc_name="@@this-my-vpc"
+subnet_name="@@this-custom-subnet"
 subnet_cidr="192.168.0.0/24"
 
 ~VPC:
@@ -30,11 +29,11 @@ ssh_key_private=@@meta/private.key
 ~FIREWALL:
 credentials_file=@@last
 project_id=@@last
-namespace=$NS
+namespace=@@this
 region=@@last
 network= <<<GET_from_state_by_type | google_compute_network | self_link
-tag_allow_ssh="$NS-allow-ssh"
-tag_allow_web="$NS-allow-web"
+tag_allow_ssh="@@this-allow-ssh"
+tag_allow_web="@@this-allow-web"
 
 ~MASTER_NODE:
 credentials_file=@@last
