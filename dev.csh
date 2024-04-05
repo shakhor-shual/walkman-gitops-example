@@ -24,7 +24,7 @@ project_id=@@last       # and ALL lines which contains IT can be removed
 region=@@last           # from thе script without affecting his work
 vpc_name=@@last         # they are present in the script only to illustrate
 ssh_key_public=@@meta/@@this-public.key
-ssh_key_private=@@meta/@@this-private.key
+ssh_key_private=@@meta/@@this=private.key
 
 ~FIREWALL:
 credentials_file=@@last
