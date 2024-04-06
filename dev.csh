@@ -1,9 +1,22 @@
 #!/usr/local/bin/cw4d
-#################################################################################################
-#   "BASHCL" play with TERRAFORM & ANSIBLE in old-fashion BASH-style
-#################################################################################################
+###########################################################################
+# Copyright The Vadym Yanik.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###########################################################################
 run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
 debug@@@ = 2   # possible here are 0, 1, 2, 3
+project@@@= plan9
 
 # ROOT
 VM_name="@@this-host-01"
@@ -12,19 +25,17 @@ DOMAIN="my.example.com"
 
 credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
-region="europe-west1"
-zone="$region-b"
+region="europe-central2"
+zone="$region-с"
 vpc_name="new-@@this-vpc"
 subnet_name="@@this-my-subnet"
 subnet_cidr="192.168.0.0/24"
 
 ~VPC:
-credentials_file=@@last # "@@last" annotation it just a "syntax-sugar"
-project_id=@@last       # and ALL lines which contains IT can be removed
-region=@@last           # from thе script without affecting his work
-vpc_name=@@last         # they are present in the script only to illustrate
-ssh_key_public=@@meta/@@this-public.key
-ssh_key_private=@@meta/@@this=private.key
+credentials_file=@@last
+project_id=@@last
+region=@@last
+vpc_name=@@last
 
 ~FIREWALL:
 credentials_file=@@last
@@ -45,7 +56,7 @@ subnetwork_self_link= <<<GET_from_state_by_type | google_compute_subnetwork | se
 instance_name=$VM_name
 host="master"
 domain=$DOMAIN
-machine_type="n2-standard-2"
+machine_type="n1-standard-1"
 image="debian-cloud/debian-10"
 ssh_user="debi"
 ssh_key_public=@@meta/@@this-public.key
@@ -76,7 +87,7 @@ tags="{slaves, $tag_allow_ssh, $tag_allow_web }"
 #ACCESS_ip=@@self/nat_ip
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
-~LOADED_GITOPS_STAGE
+~EXAMPLE_STAGE_FROM_ANOTER_REPO
 .
 
 ~SETUP_SLAVES
