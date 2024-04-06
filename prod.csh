@@ -25,7 +25,7 @@ DOMAIN="my.example.com"
 
 credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
-region="europe-west3"
+region="europe-west10"
 vpc_name="new-@@this-vpc"
 subnet_name="@@this-my-subnet"
 subnet_cidr="192.168.0.0/24"
@@ -49,13 +49,13 @@ tag_allow_web="@@this-allow-web"
 credentials_file=@@last
 project_id=@@last
 region=@@last
-zone="$region-b"
+zone="$region-a"
 network_self_link= <<<GET_from_state_by_type | google_compute_network | self_link
 subnetwork_self_link= <<<GET_from_state_by_type | google_compute_subnetwork | self_link
 instance_name=$VM_name
 host="master"
 domain=$DOMAIN
-machine_type="n1-standard-1"
+machine_type="t2d-standard-1"
 image="debian-cloud/debian-10"
 ssh_user="debi"
 ssh_key_public=@@meta/@@this-public.key
@@ -66,11 +66,11 @@ tags="{master, $tag_allow_ssh }"
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
 ~SLAVES_GROUP:
-group_size=1
+group_size=2
 credentials_file=@@last
 project_id=@@last
 region=@@last
-zone="$region-a"
+zone="$region-b"
 network_self_link=@@last
 subnetwork_self_link=@@last
 instance_name=++last
