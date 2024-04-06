@@ -25,7 +25,7 @@ DOMAIN="my.example.com"
 
 credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
-region="europe-central2"
+region="europe-west6"
 zone="$region-a"
 vpc_name="new-@@this-vpc"
 subnet_name="@@this-my-subnet"
@@ -71,7 +71,7 @@ group_size=1
 credentials_file=@@last
 project_id=@@last
 region=@@last
-zone=@@last
+zone="$region-b"
 network_self_link=@@last
 subnetwork_self_link=@@last
 instance_name=++last
