@@ -4,7 +4,6 @@ provider "google" {
   region      = var.region
 }
 
-
 resource "tls_private_key" "my_vm_access" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -71,5 +70,3 @@ resource "google_compute_instance" "my_instance" {
 
   metadata_startup_script = var.startup_script
 }
-
-

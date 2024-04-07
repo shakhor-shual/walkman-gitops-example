@@ -1,10 +1,3 @@
-# ====  WW4 specific variables DO NOT CHANGE THEM =====
-variable "album_meta_store" {
-  description = "Path to access files store"
-  default     = "../../.meta"
-}
-#======================================================
-
 variable "namespace" {
   description = "GCP credentials file name"
   default     = "default"
@@ -17,7 +10,7 @@ variable "credentials_file" {
 
 variable "project_id" {
   description = "project ID"
-  default     = "some-roject"
+  default     = "some-project"
 }
 
 variable "region" {

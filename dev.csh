@@ -96,9 +96,6 @@ host=@@all
 playbooks="{init_slaves }"
 
 ~SETUP_MASTER:
-host= ~MASTER_NODE_OF_CLUSTER
+host= ~MASTER_NODE, ~SLAVES_GROUP
 <<<SET_ansible_ready | $host | 20
 playbooks="{init_master }"
-
-#this initial dynamic-inventory settings for fifth SINGLE (for Ansible)
-# Varibles for Ansible section

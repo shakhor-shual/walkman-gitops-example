@@ -5,7 +5,7 @@ variable "credentials_file" {
 
 variable "project_id" {
   description = "project ID"
-  default     = "some-roject"
+  default     = "some-project"
 }
 
 variable "project_tenant" {
@@ -25,10 +25,12 @@ variable "zone" {
 
 variable "network_self_link" {
   description = "Network self link"
+  default     = "some-link"
 }
 
 variable "subnetwork_self_link" {
   description = "Subnetwork self link"
+  default     = "some-link"
 }
 
 variable "instance_name" {
@@ -37,7 +39,7 @@ variable "instance_name" {
 }
 
 variable "host" {
-  description = "Internal Linux host name of"
+  description = "Internal Linux host name of instance"
   default     = "node"
 }
 variable "domain" {

@@ -66,7 +66,6 @@ resource "google_compute_instance" "my_instance" {
     ssh-keys               = "${var.ssh_user}:${local_file.public_key.content}"
     block-project-ssh-keys = true
   }
-
   metadata_startup_script = var.startup_script
 }
 
