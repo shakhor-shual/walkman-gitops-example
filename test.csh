@@ -46,6 +46,16 @@ network= <<<GET_from_state_by_type | google_compute_network | self_link
 tag_allow_ssh="@@this-allow-ssh"
 tag_allow_web="@@this-allow-web"
 
+~EXTRA_FIREWALL_FROM_GIT_STAGE_EXAMPLE
+.
+credentials_file=@@last
+project_id=@@last
+region=@@last
+win_domain="@@this-domain"
+network=@@last
+ad_dc_tags= ["@@this_ad_master", "@@this_domain","domain_controllers"]
+source_ranges=@@
+
 ~MASTER_NODE:
 credentials_file=@@last
 project_id=@@last
@@ -86,9 +96,6 @@ startup_script=@@last
 tags="{slaves, $tag_allow_ssh, $tag_allow_web }"
 #ACCESS_ip=@@self/nat_ip
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
-
-~EXAMPLE_STAGE_FROM_ANOTER_REPO
-.
 
 ~SETUP_SLAVES
 host=@@all
