@@ -53,7 +53,7 @@ project_id=@@last
 region=@@last
 win_domain="@@this-domain"
 network=@@last
-ad_dc_tags= ["@@this_ad_master", "@@this_domain","domain_controllers"]
+ad_dc_tags= ["@@this-ad-master", "@@this-domain","domain-controllers"]
 source_ranges=@@
 
 ~MASTER_NODE:
