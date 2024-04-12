@@ -21,7 +21,6 @@ debug@@@ 2   # possible here are 0, 1, 2, 3
 VM_name="@@this-host-01"
 HOST="master-1"
 DOMAIN="my.example.com"
-
 credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
 region="europe-west10"

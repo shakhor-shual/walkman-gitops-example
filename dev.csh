@@ -16,7 +16,6 @@
 ###########################################################################
 run@@@ apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
 debug@@@ 2   # possible here are 0, 1, 2, 3
-project@@@= plan9
 # ROOT-level defined variables (if you want to use them)
 VM_name="@@this-host-01"
 HOST="master-1"
