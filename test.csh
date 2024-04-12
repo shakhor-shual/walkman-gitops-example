@@ -14,15 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ###########################################################################
-run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
-debug@@@ = 2   # possible here are 0, 1, 2, 3
-project@@@= plan9
-
-# ROOT
+run@@@ apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
+debug@@@ 2   # possible here are 0, 1, 2, 3
+# ROOT-level defined variables (if you want to use them)
 VM_name="@@this-host-01"
 HOST="master-1"
 DOMAIN="my.example.com"
-
 credentials_file="~/.gcp/gcp.json"
 project_id="foxy-test-415019"
 region="europe-southwest1"
@@ -47,7 +44,7 @@ tag_allow_ssh="@@this-allow-ssh"
 tag_allow_web="@@this-allow-web"
 
 ~EXTRA_FIREWALL_FROM_GIT_STAGE_EXAMPLE
-.
+. #this start-dot just a syntax shugar for memorise/mark separately loaded stages (you can skip it!)
 credentials_file=@@last
 project_id=@@last
 region=@@last
@@ -73,7 +70,7 @@ ssh_key_public=@@meta/@@this-public.key
 ssh_key_private=@@meta/@@this-private.key
 startup_script=@@meta/@@this-init.sh
 tags="{master, $tag_allow_ssh }"
-#ACCESS_ip=@@self/nat_ip
+ACCESS_ip=@@self/nat_ip
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
 ~SLAVES_GROUP:
@@ -94,7 +91,7 @@ ssh_key_public=@@last
 ssh_key_private=@@last
 startup_script=@@last
 tags="{slaves, $tag_allow_ssh, $tag_allow_web }"
-#ACCESS_ip=@@self/nat_ip
+ACCESS_ip=@@self/nat_ip
 <<<SET_access_artefacts | nat_ip | $ssh_user | $ssh_key_private
 
 ~SETUP_SLAVES

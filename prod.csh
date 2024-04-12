@@ -14,9 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ###########################################################################
-run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
-debug@@@ = 2   # possible here are 0, 1, 2, 3
-project@@@= plan9
+run@@@ apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
+debug@@@ 2   # possible here are 0, 1, 2, 3
 
 # ROOT
 VM_name="@@this-host-01"
@@ -46,7 +45,6 @@ tag_allow_ssh="@@this-allow-ssh"
 tag_allow_web="@@this-allow-web"
 
 ~EXTRA_FIREWALL_FROM_GIT_STAGE_EXAMPLE
-.
 credentials_file=@@last
 project_id=@@last
 region=@@last

@@ -14,11 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ###########################################################################
-run@@@ = apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
-debug@@@ = 2   # possible here are 0, 1, 2, 3
+run@@@ apply # possible here ( or|and in SHEBANG) are: validate, init, apply, destroy, new
+debug@@@ 2   # possible here are 0, 1, 2, 3
 project@@@= plan9
-
-# ROOT
+# ROOT-level defined variables (if you want to use them)
 VM_name="@@this-host-01"
 HOST="master-1"
 DOMAIN="my.example.com"
@@ -47,7 +46,7 @@ tag_allow_ssh="@@this-allow-ssh"
 tag_allow_web="@@this-allow-web"
 
 ~EXTRA_FIREWALL_FROM_GIT_STAGE_EXAMPLE
-.
+. #this start-dot just a syntax shugar for memorise/mark separately loaded stages (you can skip it!)
 credentials_file=@@last
 project_id=@@last
 region=@@last
