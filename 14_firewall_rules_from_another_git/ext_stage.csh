@@ -20,4 +20,4 @@
 # any variables setup for loadable stages should be implemented
 # in album-level scrits
 ###########################################################################
-git@@@ git@github.com:shakhor-shual/walkman-gitops-example-stage.git ^master >.
+git@@@ git@github.com:shakhor-shual/walkman-gitops-example-stage.git ^main >.
