@@ -5,7 +5,7 @@ This project contains deployment scripts in 3 options/environments:
 in the album can be anything). This example is designed to demonstrate 
 the methodology for working with Walkman in Gitops style
 
-### Description of the syntax of Walkman deployment scripts
+## Description of the syntax of Walkman deployment scripts
 Deployment script connecting individual stages of project to each other 
 (that is, passing parameters between them) in Shell-like syntax and style. 
 They have a reserved *.csh extension, which is convenient for comfortable 
@@ -61,13 +61,10 @@ the stage with the specified values)
 
 ## Syntax extras over Shell syntax 
 To extend usability of basic shell syntax for describing specific actions
-performed by deployment scripts, three additional entities have been 
-introduced into them: 
-- directives 
-- annotations
-- helpers
+performed by deployment scripts, next additional entities have been 
+added to them: 
 
-### Directives
+## Directives
 Directives are exclusively an element of the script root section and are 
 intended for global control of Walkman operating modes. Directives 
 looks like: 
@@ -98,15 +95,10 @@ automatically execute all found deployment scripts with execution
 sections. all found delegated scripts will be launched using the execution 
 option that was specified for the delegating script
 
-### Annotations and Helpers
-An extension of this basic Shell-like syntax is the use of two additional
-syntactic constructs in variable assignment operations: 
-- annotations (looks like: @@name OR ++name) 
-- helpers (looks like: <<<name | value-1 ... | value-N )
-
 ### Annotations
- Annotations are a predefined  macro view of frequently used routine
-operations, list of supported annotations are:- 
+Annotations (looks like: @@name OR ++name)  are a predefined  macro view of 
+frequently used routine operations. They used in script root and execution 
+sections for variables assignment operation. Supported annotations are: 
 
 - @@ - skip this variable from  stage tuning process and try use for it 
 in-stage internal default value. If the in stage used internal mechanisms 
@@ -139,5 +131,11 @@ section of script
 obtained as a result of the stage's operation
 
 
+###  Helpers
+The helpers (look like this: <<<name | value-1 ... | value-N) are actually 
+a syntactic mechanism for directly calling by name internal BASH functions 
+stored inside the Walkman. In this case, "name" must be a name of an existing 
+function in the Walkman (i.e., an internal function programmed by BASH that
+ is part of the Walkman source code).
 
 
