@@ -1,4 +1,4 @@
-# walkman-gitops-example
+### walkman-gitops-example
 This is just a test example of how the Walkman works.
 The repository contains one IaC “album” (i.e., a set of actions for 
 deploying and configuring a specific cloud infrastructure), consisting 
@@ -16,7 +16,7 @@ This album contains configuration scripts in 3 options/environments:
 in the album can be anything). This example is designed to demonstrate 
 the methodology for working with Walkman in Gitops style
 
-# Description of the syntax of Walkman deployment scripts
+### Description of the syntax of Walkman deployment scripts
 
 - Deployment scripts must have the reserved extension *.sch
 
@@ -31,48 +31,48 @@ the # symbol)
  operation of assigning variables, performed according to basic rules 
  and using the syntax of Unix shell string operations
 
--The body of the script consists of one root and (optionally) several 
+- The body of the script consists of one root and (optionally) several 
 execution sections
 
--The root section begins immediately after the shebang line and contains 
+- The root section begins immediately after the shebang line and contains 
 a directive area and (optionally) a variable assignment area
 
--Each executive section begins with a label of the form ~SOME_LABEL_NAME 
+- Each executive section begins with a label of the form ~SOME_LABEL_NAME 
 and contains only the variable assignment area; the use of directives 
 in executive sections is not allowed 
 
--The absence of executive sections in the script is allowed only if 
+- The absence of executive sections in the script is allowed only if 
 this script loads (from any git repo) other deployment scripts which 
 containing executive sections
 
--The number of execution sections in a deployment script (if it have 
+- The number of execution sections in a deployment script (if it have 
 execution sections) MUST BE EXACTLY EQUAL to the number of project 
 stages (i.e. the number of sub-folders in project folder, which 
 containing files of these stages)
 
--The names of variables in the executive sections MUST BE SAME(*) with 
+- The names of variables in the executive sections MUST BE SAME(*) with 
 the names of the variables used in the stage files (as example: for the 
 executive section that controls the Terraform used stage, the naming 
 for section variables must coincide with the variables names used in 
 terraform.tfvars file of stage)
 
-- (*Exception!): executive section can contain variables with arbitrary 
+- (*): executive section can contain variables with arbitrary 
 names if @@self annotation  was used to assign them. Such variables are 
 considered stage return values and are not used by Walkman to initialize 
 internal stage variables
 
--Variable values assigned in the execution section will be used by Walkman 
+- Variable values assigned in the execution section will be used by Walkman 
 to set the values of internal stage variables (i.e. for Terraform stages 
 this literally means that Walkman will generate a variable.tf file for 
 the stage with the specified values)
 
 
-# Syntax extensions over basic Shell syntax 
+### Syntax extensions over basic Shell syntax 
 To simplify the use of basic shell syntax when describing specific actions
  performed by deployment scripts, three additional entities have been 
 introduced into them: directives, helpers, annotations.
 
-# Directives
+### Directives
 Directives are exclusively an element of the root partition and are 
 intended for global control of Walkman operating modes. Directives 
 looks like: name@@@ parameter-1 [parameter-2 ... parameter-N]. 
@@ -102,13 +102,13 @@ AUTOMATICALLY EXECUTE ALL FOUND DEPLOYMENT SCRIPTS WITH EXECUTION
 SECTIONS. ALL FOUND DELEGATED SCRIPTS WILL BE LAUNCHED USING THE EXECUTION 
 OPTION THAT WAS SPECIFIED FOR THE DELEGATING SCRIPT
 
-# Annotations and Helpers
+### Annotations and Helpers
 An extension of this basic Shell-like syntax is the use of two additional
 syntactic constructs in variable assignment operations: 
 - annotations (they looks like @@name or ++name) 
 - helpers (they looks like <<<name | value-1 ... | value-N )
 
-# Annotations
+### Annotations
  Annotations are a predefined  macro view of frequently used routine
 operations, list of supported annotations are:- 
 
