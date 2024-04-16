@@ -1,24 +1,16 @@
-### walkman-gitops-example
+# walkman-gitops-example
 This is just a test example of how the Walkman works.
-The repository contains one IaC “album” (i.e., a set of actions for 
-deploying and configuring a specific cloud infrastructure), consisting 
-of stages of deployment of individual elements and stages of their 
-configuration. The deployment tool is Terraform, an Ansible configuration
-tool. Connecting individual stages to each other (that is, passing 
-parameters between them) is done using configuration scripts with 
-Shell-like syntax. These files have a reserved *.csh extension, which 
-is convenient for comfortable working with them in ordinary text editors 
-(for example, VS Code, nano, etc.). Because it provides syntax highlighting,
-auto-formatting, etc. using standard Shell tools/components/plugins of 
-these editors.
-This album contains configuration scripts in 3 options/environments: 
+This project contains deployment scripts in 3 options/environments: 
 (dev/test/prod; however, the names of the scripts and their number 
 in the album can be anything). This example is designed to demonstrate 
 the methodology for working with Walkman in Gitops style
 
 ### Description of the syntax of Walkman deployment scripts
-
-- Deployment scripts must have the reserved extension *.sch
+Deployment script connecting individual stages of project to each other 
+(that is, passing parameters between them) in Shell-like syntax and style. 
+They have a reserved *.csh extension, which is convenient for comfortable 
+working with them in text editors (like VS Code, nano, etc.) with syntax 
+highlighting, auto-formatting, etc. 
 
 - The first line of the script should be a shebang like:
 #!/usr/local/bin/cw4d
@@ -27,9 +19,9 @@ the methodology for working with Walkman in Gitops style
 according to the Unix Shell programming rules (i.e. starting with  
 the # symbol)
 
--The main syntactic structure of the deployment script language is the
- operation of assigning variables, performed according to basic rules 
- and using the syntax of Unix shell string operations
+- The main syntactic structure of the deployment script language is the
+operation of assigning variables, performed according to basic rules 
+and using the syntax of Unix shell string operations
 
 - The body of the script consists of one root and (optionally) several 
 execution sections
@@ -67,19 +59,23 @@ this literally means that Walkman will generate a variable.tf file for
 the stage with the specified values)
 
 
-### Syntax extensions over basic Shell syntax 
-To simplify the use of basic shell syntax when describing specific actions
- performed by deployment scripts, three additional entities have been 
-introduced into them: directives, helpers, annotations.
+## Syntax extras over Shell syntax 
+To extend usability of basic shell syntax for describing specific actions
+performed by deployment scripts, three additional entities have been 
+introduced into them: 
+- directives 
+- annotations
+- helpers
 
 ### Directives
-Directives are exclusively an element of the root partition and are 
+Directives are exclusively an element of the script root section and are 
 intended for global control of Walkman operating modes. Directives 
-looks like: name@@@ parameter-1 [parameter-2 ... parameter-N]. 
-The valid syntax of a directive's set of parameters is specific for each 
-type of directive, and is focused on the nature of the actions performed 
-by the directive. A list of available directives and a description of the 
-syntax of their parameters ([..] for optional parameters) is given below:
+looks like: 
+
+name@@@ parameter-1 [parameter-2 ... parameter-N]. 
+
+A list of available directives and a description of the syntax for their 
+parameters ([.] for optional parameters) is given below:
 
 - debug@@@ level - this directive set the level of verbosity
 for deployment script execution. Possible values of 'level' are digits 
@@ -89,24 +85,24 @@ in range 0..9. If this directive not present used 'level' 0 by default.
 repository from specified 'url' to specified local 'path' with checkout 
 to specified  'branch' (or tag) as the first step of every script run.
 
-git@@@ directive implies NESTED updates process i.e. UNTIL DEPLOYMENT 
-SCRIPTS CONTAINING git@@@ DIRECTIVES ARE FOUND IN THE CLONED/UPDATED 
-REPOSITORIES, THE PROCESS OF APPLYING ALL FOUND git@@@ DIRECTIVES WILL 
-BE PERFORMED RECURSIVELY UNTIL A SYNCHRONOUS STATE IS ACHIEVED WITH ALL 
-FOUND REMOTE REPOSITORIES 
+git-directive implies NESTED updates process i.e. until deployment 
+scripts containing git-directives are found in the cloned/updated 
+repositories, the process of applying all found git-directives will 
+be performed recursively until a synchronous state is achieved with all 
+found remote repositories 
 
-git@@@ directive also implies a DELEGATED execution process, i.e. 
-IF A DEPLOYMENT SCRIPT CONTAINS GIT DIRECTIVE(S) BUT DOES NOT HAVE 
-EXECUTION SECTIONS, AFTER SYNC OF THE REPOSITORIES IS COMPLETED, IT WILL 
-AUTOMATICALLY EXECUTE ALL FOUND DEPLOYMENT SCRIPTS WITH EXECUTION 
-SECTIONS. ALL FOUND DELEGATED SCRIPTS WILL BE LAUNCHED USING THE EXECUTION 
-OPTION THAT WAS SPECIFIED FOR THE DELEGATING SCRIPT
+git-directive also implies a DELEGATED execution process, i.e. 
+if a deployment script contains git directive(s) but does not have 
+execution sections, after sync of the repositories is completed, it will 
+automatically execute all found deployment scripts with execution 
+sections. all found delegated scripts will be launched using the execution 
+option that was specified for the delegating script
 
 ### Annotations and Helpers
 An extension of this basic Shell-like syntax is the use of two additional
 syntactic constructs in variable assignment operations: 
-- annotations (they looks like @@name or ++name) 
-- helpers (they looks like <<<name | value-1 ... | value-N )
+- annotations (looks like: @@name OR ++name) 
+- helpers (looks like: <<<name | value-1 ... | value-N )
 
 ### Annotations
  Annotations are a predefined  macro view of frequently used routine
@@ -125,9 +121,9 @@ behavior and restrictions are the same as for the previous annotation.
  
 - ++last - returns "LAST-INDEX-PRE-INCREMENT" for last value 
 assigned by the script for variable with the same name. 
-"LAST-INDEX-PRE-INCREMENT" mean: THE LAST SEPARATE GROUP OF DIGITS 
-IN THE ALPHANUMERIC VALUE WILL BE PRE-INCREMENTED OR VALUE NOT BE 
-CHANGED FOR IF NO ANY DIGITS (i.e. value-no-indexes->value-no-indexes,
+"last-index-pre-increment" mean: the last separate group of digits 
+in the alphanumeric value will be pre-incremented or value not be 
+changed for if no any digits (i.e. value-no-indexes->value-no-indexes,
 node01->node02, group-eu2-host-09-master -> group-eu2-host-10-master,
 192.168.10.199->192.168.10.200 etc). If the value of a variable with 
 that name was not assigned earlier in the script, the behavior and 
@@ -136,8 +132,8 @@ restrictions are the same as for the previous annotations.
 - @@this - returns file-name of this script (without file extension)
 
 - @@meta - returns path to Walkman-reserved .meta sub-folder for 
-CURRENT executive section, OR path to project-level .meta for ROOT
-section
+CURRENT executive section, OR path to project-level .meta in root
+section of script
 
 - @@self/some_name - returns an output value with the name some_name 
 obtained as a result of the stage's operation
