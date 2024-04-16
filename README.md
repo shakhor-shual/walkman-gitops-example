@@ -59,12 +59,12 @@ this literally means that Walkman will generate a variable.tf file for
 the stage with the specified values)
 
 
-## Syntax extras over Shell syntax 
+## Used Extension of standard Shell syntax  
 To extend usability of basic shell syntax for describing specific actions
-performed by deployment scripts, next additional entities have been 
+performed by deployment scripts, next additional syntax entities have been 
 added to them: 
 
-## Directives
+### Directives
 Directives are exclusively an element of the script root section and are 
 intended for global control of Walkman operating modes. Directives 
 looks like: 
