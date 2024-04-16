@@ -12,12 +12,12 @@ They have a reserved *.csh extension, which is convenient for comfortable
 working with them in text editors (like VS Code, nano, etc.) with syntax 
 highlighting, auto-formatting, etc. 
 
-- The first line of the script should be a shebang like:
-#!/usr/local/bin/cw4d
+- The first line of each deployment script should be a shebang looks 
+like: #!/usr/local/bin/cw4d
 
 - The script allows the use of an arbitrary number of comments made 
 according to the Unix Shell programming rules (i.e. starting with  
-the # symbol)
+the '#' symbol)
 
 - The main syntactic structure of the deployment script language is the
 operation of assigning variables, performed according to basic rules 
