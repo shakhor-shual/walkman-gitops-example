@@ -1,10 +1,14 @@
 # walkman-gitops-example
-This is just a test example of how the Walkman works.
-This project contains deployment scripts in 3 options/environments: 
-(dev/test/prod; however, the names of the scripts and their number 
-in the album can be anything). This example is designed to demonstrate 
-the methodology for working with Walkman in Gitops style
+This is a simple Walkman project example showing how a Walkman works.
+This project contains some test deployment for GCP  with inlined stages 
+structure and deployment scripts for 3 options/environments: 
+- dev (in file dev.csh)
+- test (in file test.csh)
+- prod (in file prod.csh)
+This is an external resource for another Walkman example demonstrating 
+its GitOps-style capabilities.
 
+# For best example understanding (optional):
 ## Description of the syntax of Walkman deployment scripts
 Deployment script connecting individual stages of project to each other 
 (that is, passing parameters between them) in Shell-like syntax and style. 
@@ -130,12 +134,21 @@ section of script
 - @@self/some_name - returns an output value with the name some_name 
 obtained as a result of the stage's operation
 
-
 ###  Helpers
-The helpers (look like this: <<<name | value-1 ... | value-N) are actually 
-a syntactic mechanism for directly calling by name internal BASH functions 
-stored inside the Walkman. In this case, "name" must be a name of an existing 
-function in the Walkman (i.e., an internal function programmed by BASH that
- is part of the Walkman source code).
-
+The helpers (look like this: <<<name | value-1 ... | value-N) actually 
+are a syntactic wrapper for directly using the Walkman BASH-function 
+in deployment scripts. The  "name" of helper in deployment script must 
+be a name of an existing function in the Walkman (i.e., an internal 
+function programmed in BASH which is part of the Walkman source code). 
+The concept of helpers is intended for quick, problem-oriented expansion 
+of the functionality of deployment scripts by adding new specialized BASH
+functions to the Walkman source code with the possibility of their 
+subsequent direct calling in deployment scripts. The Walkman architecture 
+allows the helper to return a single string, the contents of which can 
+be assigned to a deployment script variable (or ignored if the helper is 
+called outside of a variable assignment operation). In the latter case, 
+it is assumed that the purpose of calling the helper was to generate 
+some artifacts in the file structure of the project. A more detailed 
+description of this mechanism and a list of available helpers (with 
+their parameters) is given in Walkman project bin/README.MD
 
